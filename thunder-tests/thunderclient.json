@@ -1,0 +1,78 @@
+[
+  {
+    "_id": "b2830f44-b1f2-4c27-bdbf-c8c9869345bb",
+    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
+    "containerId": "",
+    "name": "get_faturamento_por_mes",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-06-26T02:20:50.946Z",
+    "modified": "2022-06-26T03:21:10.049Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_mes>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_faturamento_por_mes> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "750a41bf-13b7-4fab-88b7-812279e78f85",
+    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
+    "containerId": "",
+    "name": "get_faturamento_por_dia",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-06-26T02:21:48.016Z",
+    "modified": "2022-06-26T02:21:48.016Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_dia>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_faturamento_por_dia> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "91061ba2-792d-4fc3-83e9-ffc8dd905528",
+    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
+    "containerId": "",
+    "name": "get_vendas_por_horario",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-06-26T02:22:54.946Z",
+    "modified": "2022-06-26T02:22:54.946Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_vendas_por_horario>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_vendas_por_horario> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b13d94b7-735d-418c-89aa-ba81de426867",
+    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
+    "containerId": "",
+    "name": "get_produto_mais_vendido",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-06-26T02:23:31.419Z",
+    "modified": "2022-06-26T02:23:31.419Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produto_mais_vendido>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_produto_mais_vendido> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  }
+]
