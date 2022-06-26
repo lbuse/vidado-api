@@ -7,6 +7,7 @@ import { listen } from 'soap'
 import FaturamentoDao from './dao/FaturamentoDao'
 import DatabaseHelper from './helpers/DatabaseHelper'
 import FaturamentoService from './services/FaturamentoService'
+import cors from 'cors'
 
 const app = express()
 
@@ -17,6 +18,7 @@ const port = normalizePort(process.env.PORT || '3000')
 
 app.set('port', port)
 // app.use(express.urlencoded({ extended: true }))
+app.use(cors())
 app.use(compression())
 app.use(express.static(path.join(__dirname, 'public')));
 
