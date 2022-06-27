@@ -38,9 +38,11 @@ let myService = {
                         args.data_final,
                         args.lojas
                     )
-                        .then(result => resolve({
-                            resultado: JSON.stringify(result)
-                        }))
+                        .then(result => {
+                            resolve({
+                                resultado: JSON.stringify(result)
+                            })
+                        })
                         .catch(e => reject({
                             Fault: {
                                 Code: {
