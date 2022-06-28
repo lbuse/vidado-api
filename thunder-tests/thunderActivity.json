@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-24T02:57:05.667Z",
-    "modified": "2022-06-26T02:23:11.372Z",
+    "modified": "2022-06-28T21:01:10.807Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produto_mais_vendido>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_produto_mais_vendido> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_mais_vendidos_por_grupo>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1</lojas>\n        </get_mais_vendidos_por_grupo> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
       "form": []
     },
     "tests": []

@@ -74,6 +74,27 @@ class FaturamentoService {
     }
 
     /**
+     * Consulta os grupos mais vendidos dentro do período informado.
+     * @param {Date} dataInicial Inicio do período
+     * @param {Date} dataFinal Fim do período
+     * @param {array} lojas Lista de lojas
+     * @returns Lista de grupos por loja
+     */
+    async getMaisVendidosPorGrupo(dataInicial, dataFinal, lojas) {
+        FaturamentoService._isCommonParamsValid(dataInicial, dataFinal, lojas)
+
+        try {
+            return await this.dao.getMaisVendidosPorGrupo(
+                new Date(dataInicial),
+                new Date(dataFinal),
+                lojas ? lojas.split(',') : []
+            )
+        } catch (e) {
+            throw new ErrorModel(e.text, { code: 500, stackTrace: e.stack })
+        }
+    }
+
+    /**
      * Consulta os produtos mais vendidos dentro do período informado.
      * @param {Date} dataInicial Inicio do período
      * @param {Date} dataFinal Fim do período
@@ -98,7 +119,7 @@ class FaturamentoService {
      * 
      * @param {Date} dataInicial 
      * @param {Date} dataFinal 
-     * @param {*} lojas 
+     * @param {array} lojas 
      */
     static _isCommonParamsValid(dataInicial, dataFinal, lojas) {
         if (!Validators.isValidDate(dataInicial)) {
@@ -116,7 +137,7 @@ class FaturamentoService {
                 `Data inicial '${dataInicial}' deve ser menor ou igual a data final '${dataFinal}'`,
                 { code: 400 }
             )
-        } else if (lojas != null && lojas !== undefined) {
+        } else if (lojas !== null && lojas !== undefined) {
             lojas = lojas.split(',')
             if (!Validators.isIntegerArray(lojas) && !Validators.isInteger(lojas)) {
                 throw new ErrorModel(

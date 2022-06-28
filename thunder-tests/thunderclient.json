@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-06-26T02:20:50.946Z",
-    "modified": "2022-06-26T03:21:10.049Z",
+    "modified": "2022-06-28T20:43:58.083Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_mes>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_faturamento_por_mes> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_mes>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1</lojas>\n        </get_faturamento_por_mes> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
       "form": []
     },
     "tests": []
@@ -27,12 +27,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-06-26T02:21:48.016Z",
-    "modified": "2022-06-26T02:21:48.016Z",
+    "modified": "2022-06-28T20:44:06.826Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_dia>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_faturamento_por_dia> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_dia>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas></lojas>\n        </get_faturamento_por_dia> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
       "form": []
     },
     "tests": []
@@ -46,12 +46,12 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2022-06-26T02:22:54.946Z",
-    "modified": "2022-06-26T02:22:54.946Z",
+    "modified": "2022-06-28T20:43:25.538Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_vendas_por_horario>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_vendas_por_horario> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_vendas_por_horario>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Códigos podem ser omitidos ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_vendas_por_horario> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
       "form": []
     },
     "tests": []
@@ -65,12 +65,107 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-06-26T02:23:31.419Z",
-    "modified": "2022-06-26T02:23:31.419Z",
+    "modified": "2022-06-28T20:44:14.160Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produto_mais_vendido>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_produto_mais_vendido> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produto_mais_vendido>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_produto_mais_vendido> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8501c983-8040-4199-995d-e064f88e5175",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "",
+    "name": "get_lojas",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-06-28T20:38:08.475Z",
+    "modified": "2022-06-28T20:44:30.376Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_lojas>\n            <!--ids pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <ids>1</ids>\n        </get_lojas> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "aedf9419-5622-4a49-8226-52cb92e5bede",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "",
+    "name": "get_grupos",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-06-28T20:41:03.655Z",
+    "modified": "2022-06-28T20:44:39.544Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_grupos>\n            <!--ids pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <ids>1,2</ids>\n        </get_grupos> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ae38b9dd-fb09-4129-ac25-9fcbcaa69292",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "",
+    "name": "get_produtos",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-06-28T20:42:08.743Z",
+    "modified": "2022-06-28T20:44:48.605Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produtos>\n            <!--ids pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <ids>1,2</ids>\n        </get_produtos> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "2ee87ccb-e8bc-4753-ab07-745a93a5e440",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "",
+    "name": "get_produtos_por_termo",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-06-28T20:50:08.755Z",
+    "modified": "2022-06-28T20:50:08.755Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produtos_por_termo>\n            <!--termo é obrigatório e não pode ser vazio-->\n            <termo>coca</termo>\n        </get_produtos_por_termo> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "796c0580-c967-4277-a839-a40d7b6f0291",
+    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
+    "containerId": "",
+    "name": "get_mais_vendidos_por_grupo",
+    "url": "http://localhost:3000/wsdl",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-06-28T21:01:49.693Z",
+    "modified": "2022-06-28T21:01:49.693Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "xml",
+      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_mais_vendidos_por_grupo>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1</lojas>\n        </get_mais_vendidos_por_grupo> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
       "form": []
     },
     "tests": []

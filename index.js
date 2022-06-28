@@ -1,13 +1,19 @@
 'use strict'
 import compression from 'compression'
+import cors from 'cors'
 import express from 'express'
 import fs from 'fs'
 import path from 'path'
 import { listen } from 'soap'
 import FaturamentoDao from './dao/FaturamentoDao'
+import GruposDao from './dao/GruposDao'
+import LojasDao from './dao/LojasDao'
+import ProdutosDao from './dao/ProdutosDao'
 import DatabaseHelper from './helpers/DatabaseHelper'
 import FaturamentoService from './services/FaturamentoService'
-import cors from 'cors'
+import GruposService from './services/GruposService'
+import LojasService from './services/LojasService'
+import ProdutosService from './services/ProdutosService'
 
 const app = express()
 
@@ -22,22 +28,107 @@ app.use(cors())
 app.use(compression())
 app.use(express.static(path.join(__dirname, 'public')));
 
-let faturamentoService = new FaturamentoService(
-    new FaturamentoDao(
-        new DatabaseHelper()
-    )
-)
+const databaseHelper = new DatabaseHelper()
 
-let myService = {
+let vidadoService = {
     ReportService: {
         ReportService_0: {
+            get_lojas: function (args) {
+                return new Promise((resolve, reject) => {
+                    new LojasService(new LojasDao(databaseHelper))
+                        .getLojas(args.ids)
+                        .then(result => {
+                            resolve({
+                                resultado: JSON.stringify(result)
+                            })
+                        }).catch(e => {
+                            reject({
+                                Fault: {
+                                    Code: {
+                                        Value: e.code,
+                                        Subcode: { value: e.message }
+                                    },
+                                    Reason: { Text: e.message },
+                                    statusCode: e.code
+                                }
+                            })
+                        })
+                })
+            },
+            get_grupos: function (args) {
+                return new Promise((resolve, reject) => {
+                    new GruposService(new GruposDao(databaseHelper))
+                        .getGrupos(args.ids)
+                        .then(result => {
+                            resolve({
+                                resultado: JSON.stringify(result)
+                            })
+                        }).catch(e => {
+                            reject({
+                                Fault: {
+                                    Code: {
+                                        Value: e.code,
+                                        Subcode: { value: e.message }
+                                    },
+                                    Reason: { Text: e.message },
+                                    statusCode: e.code
+                                }
+                            })
+                        })
+                })
+            },
+            get_produtos: function(args) {
+                return new Promise((resolve, reject) => {
+                    new ProdutosService(new ProdutosDao(databaseHelper))
+                        .getProdutos(args.ids)
+                        .then(result => {
+                            resolve({
+                                resultado: JSON.stringify(result)
+                            })
+                        }).catch(e => {
+                            reject({
+                                Fault: {
+                                    Code: {
+                                        Value: e.code,
+                                        Subcode: { value: e.message }
+                                    },
+                                    Reason: { Text: e.message },
+                                    statusCode: e.code
+                                }
+                            })
+                        })
+                })
+            },
+            get_produtos_por_termo: function(args) {
+                return new Promise((resolve, reject) => {
+                    new ProdutosService(new ProdutosDao(databaseHelper))
+                        .getProdutosPorNome(args.termo)
+                        .then(result => {
+                            resolve({
+                                resultado: JSON.stringify(result)
+                            })
+                        }).catch(e => {
+                            reject({
+                                Fault: {
+                                    Code: {
+                                        Value: e.code,
+                                        Subcode: { value: e.message }
+                                    },
+                                    Reason: { Text: e.message },
+                                    statusCode: e.code
+                                }
+                            })
+                        })
+                })
+            },
             get_faturamento_por_dia: function (args) {
                 return new Promise((resolve, reject) => {
-                    faturamentoService.getFaturamentoPorDia(
-                        args.data_inicial,
-                        args.data_final,
-                        args.lojas
-                    )
+                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                        .getFaturamentoPorDia(
+                            args.data_inicial,
+                            args.data_final,
+                            args.lojas
+                        )
                         .then(result => {
                             resolve({
                                 resultado: JSON.stringify(result)
@@ -50,18 +141,19 @@ let myService = {
                                     Subcode: { value: e.message }
                                 },
                                 Reason: { Text: e.message },
-                                statusCode: 500
+                                statusCode: e.code
                             }
                         }))
                 });
             },
             get_faturamento_por_mes: function (args) {
                 return new Promise((resolve, reject) => {
-                    faturamentoService.getFaturamentoPorMes(
-                        args.data_inicial,
-                        args.data_final,
-                        args.lojas
-                    )
+                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                        .getFaturamentoPorMes(
+                            args.data_inicial,
+                            args.data_final,
+                            args.lojas
+                        )
                         .then(result => resolve({
                             resultado: JSON.stringify(result)
                         }))
@@ -72,18 +164,19 @@ let myService = {
                                     Subcode: { value: e.message }
                                 },
                                 Reason: { Text: e.message },
-                                statusCode: 500
+                                statusCode: e.code
                             }
                         }))
                 });
             },
             get_vendas_por_horario: function (args) {
                 return new Promise((resolve, reject) => {
-                    faturamentoService.getVendasPorHorario(
-                        args.data_inicial,
-                        args.data_final,
-                        args.lojas
-                    )
+                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                        .getVendasPorHorario(
+                            args.data_inicial,
+                            args.data_final,
+                            args.lojas
+                        )
                         .then(result => resolve({
                             resultado: JSON.stringify(result)
                         }))
@@ -94,18 +187,42 @@ let myService = {
                                     Subcode: { value: e.message }
                                 },
                                 Reason: { Text: e.message },
-                                statusCode: 500
+                                statusCode: e.code
+                            }
+                        }))
+                });
+            },
+            get_mais_vendidos_por_grupo: function (args) {
+                return new Promise((resolve, reject) => {
+                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                        .getMaisVendidosPorGrupo(
+                            args.data_inicial,
+                            args.data_final,
+                            args.lojas
+                        )
+                        .then(result => resolve({
+                            resultado: JSON.stringify(result)
+                        }))
+                        .catch(e => reject({
+                            Fault: {
+                                Code: {
+                                    Value: e.code,
+                                    Subcode: { value: e.message }
+                                },
+                                Reason: { Text: e.message },
+                                statusCode: e.code
                             }
                         }))
                 });
             },
             get_produto_mais_vendido: function (args) {
                 return new Promise((resolve, reject) => {
-                    faturamentoService.getProdutoMaisVendido(
-                        args.data_inicial,
-                        args.data_final,
-                        args.lojas
-                    )
+                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                        .getProdutoMaisVendido(
+                            args.data_inicial,
+                            args.data_final,
+                            args.lojas
+                        )
                         .then(result => resolve({
                             resultado: JSON.stringify(result)
                         }))
@@ -116,7 +233,7 @@ let myService = {
                                     Subcode: { value: e.message }
                                 },
                                 Reason: { Text: e.message },
-                                statusCode: 500
+                                statusCode: e.code
                             }
                         }))
                 });
@@ -144,7 +261,7 @@ const xml = fs.readFileSync('public/vidado.wsdl', 'utf8');
 app.listen(port, function () {
     //Note: /wsdl route will be handled by soap module
     //and all other routes & middleware will continue to work
-    listen(app, '/wsdl', myService, xml, function () {
+    listen(app, '/wsdl', vidadoService, xml, function () {
         console.log('server initialized');
     });
 })

@@ -5,5 +5,12 @@
     "created": "2022-06-26T02:20:50.944Z",
     "sortNum": 10000,
     "folders": []
+  },
+  {
+    "_id": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "colName": "Cadastros",
+    "created": "2022-06-28T20:38:08.472Z",
+    "sortNum": 20000,
+    "folders": []
   }
 ]
