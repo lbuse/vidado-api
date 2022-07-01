@@ -200,7 +200,13 @@ class FaturamentoDao {
                     p.id_grupo,
                     g.nome AS grupo,
                     SUM(vi.quantidade) AS quantidade_total,
-                    SUM(vi.quantidade * vi.preco_unitario) AS valor_total
+                    SUM(vi.quantidade * vi.preco_unitario) AS valor_total,
+                    SUM(vi.quantidade * vi.preco_unitario) / (SELECT SUM(vi_in.quantidade * vi_in.preco_unitario) 
+                    	FROM vendas AS v_in
+                    	INNER JOIN venda_itens AS vi_in
+                        	ON vi_in.id_venda = v_in.id 
+                    	WHERE v_in.id_loja = v.id_loja AND DATE(v_in.data) BETWEEN ? AND ?
+                    ) AS porcentagem
                 FROM Lojas AS l
                     INNER JOIN vendas AS v
                         ON v.id_loja = l.id
@@ -214,7 +220,7 @@ class FaturamentoDao {
                     ${whereLojas}
                 GROUP BY v.id_loja, p.id_grupo 
                 ORDER BY v.id_loja, p.id_grupo`,
-                [dataInicial, dataFinal, ...lojas]
+                [dataInicial, dataFinal, dataInicial, dataFinal, ...lojas]
             )
         } finally {
             db.end()
