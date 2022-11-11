@@ -1,172 +1,450 @@
 [
   {
-    "_id": "b2830f44-b1f2-4c27-bdbf-c8c9869345bb",
-    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
-    "containerId": "",
-    "name": "get_faturamento_por_mes",
-    "url": "http://localhost:3000/wsdl",
+    "_id": "24f302d4-e9b1-4e33-8695-63cfae070bd9",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "02d2ce07-a2f3-4061-93f7-9249c2c43899",
+    "name": "signin",
+    "url": "http://localhost:3000/signin",
     "method": "POST",
     "sortNum": 10000,
-    "created": "2022-06-26T02:20:50.946Z",
-    "modified": "2022-06-28T20:43:58.083Z",
+    "created": "2022-11-09T01:23:03.571Z",
+    "modified": "2022-11-11T15:23:49.004Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_mes>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1</lojas>\n        </get_faturamento_por_mes> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "lucasbusellato@gmail.com"
+        },
+        {
+          "name": "password",
+          "value": "123456"
+        }
+      ]
     },
     "tests": []
   },
   {
-    "_id": "750a41bf-13b7-4fab-88b7-812279e78f85",
-    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
-    "containerId": "",
-    "name": "get_faturamento_por_dia",
-    "url": "http://localhost:3000/wsdl",
+    "_id": "91e47bfc-9099-4eba-8263-798b4b617ac1",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "02d2ce07-a2f3-4061-93f7-9249c2c43899",
+    "name": "signup",
+    "url": "http://localhost:3000/signup",
     "method": "POST",
     "sortNum": 20000,
-    "created": "2022-06-26T02:21:48.016Z",
-    "modified": "2022-06-28T20:44:06.826Z",
+    "created": "2022-11-09T01:25:46.499Z",
+    "modified": "2022-11-11T02:28:17.682Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_faturamento_por_dia>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas></lojas>\n        </get_faturamento_por_dia> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "name",
+          "value": "Lucas"
+        },
+        {
+          "name": "email",
+          "value": "lucasbusellato@gmail.com"
+        },
+        {
+          "name": "password",
+          "value": "123456"
+        },
+        {
+          "name": "domain",
+          "value": "matriz.com"
+        }
+      ]
     },
     "tests": []
   },
   {
-    "_id": "91061ba2-792d-4fc3-83e9-ffc8dd905528",
-    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
-    "containerId": "",
-    "name": "get_vendas_por_horario",
-    "url": "http://localhost:3000/wsdl",
+    "_id": "8e62b3e2-4ec0-46a3-9e23-5fcc6d12d0aa",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "02d2ce07-a2f3-4061-93f7-9249c2c43899",
+    "name": "forgot",
+    "url": "http://localhost:3000/signin/forgot",
     "method": "POST",
     "sortNum": 30000,
-    "created": "2022-06-26T02:22:54.946Z",
-    "modified": "2022-06-28T20:43:25.538Z",
+    "created": "2022-11-09T01:27:09.309Z",
+    "modified": "2022-11-11T02:28:19.482Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_vendas_por_horario>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--Códigos podem ser omitidos ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_vendas_por_horario> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "lucasbusellato@gmail.com"
+        }
+      ]
     },
     "tests": []
   },
   {
-    "_id": "b13d94b7-735d-418c-89aa-ba81de426867",
-    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
-    "containerId": "",
-    "name": "get_produto_mais_vendido",
-    "url": "http://localhost:3000/wsdl",
-    "method": "POST",
+    "_id": "f22b5d0d-ebfe-44d8-99c6-0d1c14fb1346",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "02d2ce07-a2f3-4061-93f7-9249c2c43899",
+    "name": "forgot",
+    "url": "http://localhost:3000/signin/forgot",
+    "method": "PATCH",
     "sortNum": 40000,
-    "created": "2022-06-26T02:23:31.419Z",
-    "modified": "2022-06-28T20:44:14.160Z",
+    "created": "2022-11-09T01:28:52.100Z",
+    "modified": "2022-11-11T22:59:15.408Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produto_mais_vendido>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1,2</lojas>\n        </get_produto_mais_vendido> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "lucasbusellato@gmail.com"
+        },
+        {
+          "name": "code",
+          "value": "3359"
+        },
+        {
+          "name": "new_password",
+          "value": "123456"
+        },
+        {
+          "name": "confirm_password",
+          "value": "123456"
+        }
+      ]
     },
     "tests": []
   },
   {
-    "_id": "8501c983-8040-4199-995d-e064f88e5175",
+    "_id": "cce4fbee-3585-4c45-b9d0-709695d265c9",
     "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
-    "containerId": "",
-    "name": "get_lojas",
-    "url": "http://localhost:3000/wsdl",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2022-06-28T20:38:08.475Z",
-    "modified": "2022-06-28T20:44:30.376Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_lojas>\n            <!--ids pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <ids>1</ids>\n        </get_lojas> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "aedf9419-5622-4a49-8226-52cb92e5bede",
-    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
-    "containerId": "",
-    "name": "get_grupos",
-    "url": "http://localhost:3000/wsdl",
-    "method": "POST",
-    "sortNum": 20000,
-    "created": "2022-06-28T20:41:03.655Z",
-    "modified": "2022-06-28T20:44:39.544Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_grupos>\n            <!--ids pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <ids>1,2</ids>\n        </get_grupos> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "ae38b9dd-fb09-4129-ac25-9fcbcaa69292",
-    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
-    "containerId": "",
-    "name": "get_produtos",
-    "url": "http://localhost:3000/wsdl",
-    "method": "POST",
-    "sortNum": 30000,
-    "created": "2022-06-28T20:42:08.743Z",
-    "modified": "2022-06-28T20:44:48.605Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produtos>\n            <!--ids pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <ids>1,2</ids>\n        </get_produtos> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "2ee87ccb-e8bc-4753-ab07-745a93a5e440",
-    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
-    "containerId": "",
-    "name": "get_produtos_por_termo",
-    "url": "http://localhost:3000/wsdl",
-    "method": "POST",
-    "sortNum": 40000,
-    "created": "2022-06-28T20:50:08.755Z",
-    "modified": "2022-06-28T20:50:08.755Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_produtos_por_termo>\n            <!--termo é obrigatório e não pode ser vazio-->\n            <termo>coca</termo>\n        </get_produtos_por_termo> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "796c0580-c967-4277-a839-a40d7b6f0291",
-    "colId": "6570ca5f-2462-4638-be2b-22a27dcf7034",
-    "containerId": "",
-    "name": "get_mais_vendidos_por_grupo",
-    "url": "http://localhost:3000/wsdl",
-    "method": "POST",
+    "containerId": "bc866618-c493-4cc1-ae62-d97b6dd64bdf",
+    "name": "stores",
+    "url": "http://localhost:3000/stores?ids=1,2",
+    "method": "GET",
     "sortNum": 50000,
-    "created": "2022-06-28T21:01:49.693Z",
-    "modified": "2022-06-28T21:01:49.693Z",
+    "created": "2022-11-09T01:39:33.755Z",
+    "modified": "2022-11-11T17:58:12.350Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "ids",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d57bb97c-0b9d-4404-b538-4da68e5332d0",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "02d2ce07-a2f3-4061-93f7-9249c2c43899",
+    "name": "change-password",
+    "url": "http://localhost:3000/user/change-password",
+    "method": "PATCH",
+    "sortNum": 50000,
+    "created": "2022-11-09T01:42:14.580Z",
+    "modified": "2022-11-11T16:41:56.879Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "xml",
-      "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <SOAP-ENV:Body>\n        <get_mais_vendidos_por_grupo>\n            <data_inicial>2020-12-01T03:23:00</data_inicial>\n            <data_final>2020-12-17T03:24:00</data_final>\n            <!--lojas pode ser omitido ou informado apenas um código do tipo inteiro (ex.: 1)-->\n            <lojas>1</lojas>\n        </get_mais_vendidos_por_grupo> \n     </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>",
-      "form": []
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "lucasbusellato@gmail.com"
+        },
+        {
+          "name": "password",
+          "value": "123456"
+        },
+        {
+          "name": "new_password",
+          "value": "123456"
+        },
+        {
+          "name": "confirm_password",
+          "value": "123456"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ee69936c-d7b4-4ed2-861c-33ae6824d870",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "bc866618-c493-4cc1-ae62-d97b6dd64bdf",
+    "name": "products-groups",
+    "url": "http://localhost:3000/products/groups",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2022-11-09T01:45:26.606Z",
+    "modified": "2022-11-10T01:13:26.414Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "ids",
+        "value": "1,2",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "000a9edc-cd70-43b0-b17c-1b2eef468211",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "bc866618-c493-4cc1-ae62-d97b6dd64bdf",
+    "name": "products",
+    "url": "http://localhost:3000/products",
+    "method": "GET",
+    "sortNum": 80000,
+    "created": "2022-11-09T01:47:05.934Z",
+    "modified": "2022-11-10T01:12:59.640Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "ids",
+        "value": "1, 2",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "s",
+        "value": "coca",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "420067e1-88f6-425a-a675-1c3099b79624",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "f1bac9b4-284e-4e9c-84b4-3cad0b44d643",
+    "name": "reports-store-peak",
+    "url": "http://localhost:3000/reports/store/peak?startDate=2022-02-01&endDate=2022-02-05&storesIds=1, 2",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2022-11-09T01:50:10.288Z",
+    "modified": "2022-11-10T02:11:36.786Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "2022-02-01",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "2022-02-05",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1, 2",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "3c6d08ae-a823-415b-991f-e1af054a357f",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "f1bac9b4-284e-4e9c-84b4-3cad0b44d643",
+    "name": "reports-store-score",
+    "url": "http://localhost:3000/reports/store/score?startDate=2022-02-01&endDate=2022-02-05&storesIds=1",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2022-11-09T01:51:12.370Z",
+    "modified": "2022-11-11T00:53:29.548Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "2022-02-01",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "2022-02-05",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a3dbbf9e-557b-4b3b-8c7b-d10c66623fa9",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "f1bac9b4-284e-4e9c-84b4-3cad0b44d643",
+    "name": "reports-revenue-byday",
+    "url": "http://localhost:3000/reports/revenue/by-day?startDate=2022-07-01&endDate=2022-07-01&storesIds=1,2",
+    "method": "GET",
+    "sortNum": 110000,
+    "created": "2022-11-09T01:55:23.138Z",
+    "modified": "2022-11-10T02:13:28.358Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "2022-07-01",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "2022-07-01",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "9339b941-a046-43b8-a015-44d81ca15136",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "f1bac9b4-284e-4e9c-84b4-3cad0b44d643",
+    "name": "reports-revenue-by-month",
+    "url": "http://localhost:3000/reports/revenue/by-month?startDate=2022-07-01&endDate=2022-07-31&storesIds=1,2",
+    "method": "GET",
+    "sortNum": 120000,
+    "created": "2022-11-09T01:57:40.078Z",
+    "modified": "2022-11-10T02:14:19.246Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "2022-07-01",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "2022-07-31",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "30bec1ba-cfd7-4ccc-9e00-7f6d32254528",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "f1bac9b4-284e-4e9c-84b4-3cad0b44d643",
+    "name": "reports-revenue-by-groups",
+    "url": "http://localhost:3000/reports/revenue/by-groups?startDate=2022-02-01&endDate=2022-02-05&storesIds=1",
+    "method": "GET",
+    "sortNum": 130000,
+    "created": "2022-11-09T01:59:07.093Z",
+    "modified": "2022-11-11T21:32:18.304Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "2022-02-01",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "2022-02-05",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
+    },
+    "tests": []
+  },
+  {
+    "_id": "6650be54-702e-4a9a-9577-d37202d96e2c",
+    "colId": "893c4900-2767-4f09-bada-e4d41e35f442",
+    "containerId": "f1bac9b4-284e-4e9c-84b4-3cad0b44d643",
+    "name": "reports-revenue-best-selling-products",
+    "url": "http://localhost:3000/reports/revenue/best-selling-products?startDate=2022-02-01&endDate=2022-02-05",
+    "method": "GET",
+    "sortNum": 140000,
+    "created": "2022-11-09T02:00:09.854Z",
+    "modified": "2022-11-10T02:17:55.358Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "2022-02-01",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "2022-02-05",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1,2",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgwNDA4NzcsImV4cCI6MTY3MDYzMjg3N30.DLkmkXE1BWtjt4GMRO9IKB3Xz1jH94BfgugsC9tDPfU"
     },
     "tests": []
   }

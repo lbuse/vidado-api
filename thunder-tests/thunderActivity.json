@@ -50,5 +50,388 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "7915f0dc-8ad3-426a-9604-28d7e1f430a3",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/signin",
+    "url": "http://localhost:3000/signin",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-09T01:22:35.157Z",
+    "modified": "2022-11-09T01:22:35.157Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "teste@teste.com"
+        },
+        {
+          "name": "password",
+          "value": "123456"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "124fd57f-d2d7-40f0-9a72-a37fc4e90693",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/signup",
+    "url": "http://localhost:3000/signup",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-09T01:25:29.194Z",
+    "modified": "2022-11-09T01:25:29.194Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "name",
+          "value": "Joana"
+        },
+        {
+          "name": "email",
+          "value": "joana@email.com"
+        },
+        {
+          "name": "password",
+          "value": "123456"
+        },
+        {
+          "name": "domain",
+          "value": "dominio.com"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "6db3127c-38f9-40cd-89af-610481b55ae2",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/forgot",
+    "url": "http://localhost:3000/forgot",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-09T01:26:50.056Z",
+    "modified": "2022-11-09T01:26:50.056Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "joana@email.com"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "26c2cf74-9577-42e1-8bb1-1c66f788370a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/forgot",
+    "url": "http://localhost:3000/forgot",
+    "method": "PATCH",
+    "sortNum": 0,
+    "created": "2022-11-09T01:28:35.290Z",
+    "modified": "2022-11-09T01:28:35.291Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "joana@email.com"
+        },
+        {
+          "name": "code",
+          "value": "12345"
+        },
+        {
+          "name": "new_password",
+          "value": "novaSenha"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "c816a4b5-a9e2-4b43-bdb6-63028363d41c",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/stores?ids=1,2",
+    "url": "http://localhost:3000/stores?ids=1,2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:39:03.133Z",
+    "modified": "2022-11-09T01:39:03.133Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "ids",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "7c358f4e-af61-4ed0-8f67-912fcb359917",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/user/change-password",
+    "url": "http://localhost:3000/user/change-password",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-09T01:41:58.986Z",
+    "modified": "2022-11-09T01:41:58.986Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "joana@email.com"
+        },
+        {
+          "name": "password",
+          "value": "12345"
+        },
+        {
+          "name": "new_password",
+          "value": "123456"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "a7275aa9-b5c1-4303-94ae-f63c9a7c0c6a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/groups?ids=1,2",
+    "url": "http://localhost:3000/products/groups?ids=1,2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:45:09.123Z",
+    "modified": "2022-11-09T01:45:09.123Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "ids",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "b92ec859-8f0c-4854-9890-5a67c5e2f07e",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products",
+    "url": "http://localhost:3000/products",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:46:56.601Z",
+    "modified": "2022-11-09T01:46:56.601Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "ids",
+        "value": "1, 2",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "s",
+        "value": "coca",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "98aabc11-f8c4-4632-898b-2aa477d6d7ee",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/reports/store/peak?startDate=20220701&endDate=20220701&storesIds=1, 2",
+    "url": "http://localhost:3000/reports/store/peak?startDate=20220701&endDate=20220701&storesIds=1, 2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:49:44.652Z",
+    "modified": "2022-11-09T01:49:44.652Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1, 2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "f1cd79ca-8c76-44ed-aab5-f611b4c4085a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/reports/store/score",
+    "url": "http://localhost:3000/reports/store/score",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:50:52.080Z",
+    "modified": "2022-11-09T01:50:52.080Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2de0c663-87ea-461f-957c-a9ef7a5ad1df",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/reports/revenue/byday?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "url": "http://localhost:3000/reports/revenue/byday?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:54:59.851Z",
+    "modified": "2022-11-09T01:54:59.851Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "7759f951-79f2-4578-9489-60e8e21e0aa7",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/reports/revenue/by-month?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "url": "http://localhost:3000/reports/revenue/by-month?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:57:18.288Z",
+    "modified": "2022-11-09T01:57:18.288Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "b476fe23-0dca-44c6-95c2-504096c779b7",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/reports/revenue/groups-total?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "url": "http://localhost:3000/reports/revenue/groups-total?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:58:46.075Z",
+    "modified": "2022-11-09T01:58:46.076Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "1bac631e-94aa-46c1-8e3f-afb65579fb8e",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/reports/revenue/best-selling-products?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "url": "http://localhost:3000/reports/revenue/best-selling-products?startDate=20220701&endDate=20220701&storesIds=1,2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-09T01:59:48.658Z",
+    "modified": "2022-11-09T01:59:48.658Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "startDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "endDate",
+        "value": "20220701",
+        "isPath": false
+      },
+      {
+        "name": "storesIds",
+        "value": "1,2",
+        "isPath": false
+      }
+    ],
+    "tests": []
   }
 ]

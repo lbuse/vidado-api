@@ -1,0 +1,895 @@
+openapi: 3.0.3
+info:
+  title: Vidado - OpenAPI 3.0
+  description: |-
+    Está é a API destinada a aplicações que desejam se comunicar com a Vidado.
+  contact:
+    email: vidado.corp@yahoo.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://localhost:3000
+tags:
+  - name: Cadastros
+    description: Operações relacionadas a cadastro
+  - name: Relatórios
+    description: Operações relacionadas a extração de dados
+  - name: Usuário
+    description: Operações relacionadas ao usuário
+paths:
+  /stores:
+    get:
+      tags:
+        - Cadastros
+      summary: Consulta lojas cadastradas
+      description: Retorna os dados das lojas encontradas
+      operationId: getStores
+      parameters:
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as lojas
+          schema:
+            type: string
+            example: '1,2'
+      responses:
+        '200':
+          description: Consulta bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store'
+        '400':
+          description: Lista de códigos de lojas é inválida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /products/groups:
+    get:
+      tags:
+        - Cadastros
+      summary: Consulta grupos de produtos cadastradas
+      description: Retorna os dados dos grupos encontrados
+      operationId: getGroups
+      parameters:
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as grupos
+          schema:
+            type: string
+            example: '1,2'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '400':
+          description: Lista de códigos de grupos é inválida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /signup:
+    post:
+      tags:
+        - Usuário
+      summary: Cadastra um novo usuário
+      description: Cadastra um novo usuário
+      operationId: addUser
+      requestBody:
+        description: Cria um novo usuário
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegisteringUser'
+        required: true
+      responses:
+        '201':
+          description: Usuário cadastro com sucesso
+        '409':
+          description: Email já cadastrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /signin:
+    post:
+      tags:
+        - Usuário
+      summary: Autentica um usuário
+      description: Autentica um usuário
+      operationId: signinUser
+      requestBody:
+        description: Autentica um novo usuário
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SignInUser'
+        required: true
+      responses:
+        '200':
+          description: Usuário autenticado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+        '401':
+          description: Email ou senha inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Erro de validação
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /signin/forgot:
+    post:
+      tags:
+        - Usuário
+      summary: Requisita código de recuperação
+      description: Requisita código de recuperação
+      operationId: createPasswordrecoveryCode
+      requestBody:
+        description: Requisita código de recuperação
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RequestRecoveryCode'
+        required: true
+      responses:
+        '201':
+          description: Código de recuperação enviado com sucesso
+        '404':
+          description: Email não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Usuário
+      summary: Requisita código de recuperação
+      description: Requisita código de recuperação
+      operationId: resetPassword
+      requestBody:
+        description: Requisita código de recuperação
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+        required: true
+      responses:
+        '204':
+          description: Código aceito
+        '401':
+          description: Código inválido ou expirado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/change-password:
+    patch:
+      tags:
+        - Usuário
+      summary: Requisita mudança de senha
+      description: Requisita mudança de senha
+      operationId: changePassword
+      requestBody:
+        description: Requisita mudança de senha
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+        required: true
+      responses:
+        '204':
+          description: Senha foi modificada com o sucesso
+        '401':
+          description: Senha atual incorreta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Email não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /reports/store/peak:
+    get:
+      tags:
+        - Relatórios
+      summary: Consulta picos de atendimento
+      description: Retorna picos de atendimento
+      operationId: getPeaks
+      parameters:
+        - in: query
+          name: startDate
+          description: Inicio do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-01'
+          required: true
+        - in: query
+          name: endDate
+          description: Fim do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-05'
+          required: true
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as lojas
+          schema:
+            type: string
+            example: '1,2'
+          required: true
+      responses:
+        '200':
+          description: Consulta bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RevenuePerHour'
+        '400':
+          description: Parâmetro inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /reports/store/score:
+    get:
+      tags:
+        - Relatórios
+      summary: Consulta médias de avaliação de lojas
+      description: Retorna médias de avaliação de lojas
+      operationId: getScores
+      parameters:
+        - in: query
+          name: startDate
+          description: Inicio do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-01'
+          required: true
+        - in: query
+          name: endDate
+          description: Fim do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-05'
+          required: true
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as lojas
+          schema:
+            type: string
+            example: '1,2'
+          required: true
+      responses:
+        '200':
+          description: Consulta bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RevenuePerHour'
+        '400':
+          description: Parâmetro inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /reports/revenue/by-day:
+    get:
+      tags:
+        - Relatórios
+      summary: Consulta de faturamento por dia de lojas
+      description: Retorna faturamento por dia de lojas
+      operationId: getRevenueByDay
+      parameters:
+        - in: query
+          name: startDate
+          description: Inicio do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-01'
+          required: true
+        - in: query
+          name: endDate
+          description: Fim do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-05'
+          required: true
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as lojas
+          schema:
+            type: string
+            example: '1,2'
+          required: true
+      responses:
+        '200':
+          description: Consulta bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RevenuePerDay'
+        '400':
+          description: Parâmetro inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /reports/revenue/by-month:
+    get:
+      tags:
+        - Relatórios
+      summary: Consulta de faturamento por dia de lojas
+      description: Retorna faturamento por dia de lojas
+      operationId: getRevenueByMonth
+      parameters:
+        - in: query
+          name: startDate
+          description: Inicio do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-01'
+          required: true
+        - in: query
+          name: endDate
+          description: Fim do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-05'
+          required: true
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as lojas
+          schema:
+            type: string
+            example: '1,2'
+          required: true
+      responses:
+        '200':
+          description: Consulta bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RevenuePerMonth'
+        '400':
+          description: Parâmetro inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /reports/revenue/by-groups:
+    get:
+      tags:
+        - Relatórios
+      summary: Consulta quanto cada grupo representa o faturamento total
+      description: Retorna quanto cada grupo representa o faturamento total
+      operationId: getRevenuePerGroups
+      parameters:
+        - in: query
+          name: startDate
+          description: Inicio do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-01'
+          required: true
+        - in: query
+          name: endDate
+          description: Fim do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-05'
+          required: true
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as lojas
+          schema:
+            type: string
+            example: '1,2'
+          required: true
+      responses:
+        '200':
+          description: Consulta bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RevenuePerGroups'
+        '400':
+          description: Parâmetro inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+  /reports/revenue/best-selling-products:
+    get:
+      tags:
+        - Relatórios
+      summary: Consulta os produtos mais vendidos
+      description: Retorna quanto cada grupo representa o faturamento total
+      operationId: getBestSellingProducts
+      parameters:
+        - in: query
+          name: startDate
+          description: Inicio do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-01'
+          required: true
+        - in: query
+          name: endDate
+          description: Fim do período da consulta
+          schema:
+            type: string
+            format: date
+            pattern: ([0-9]{4})-(?:[0-9]{2})-([0-9]{2})
+            example: '2022-01-05'
+          required: true
+        - in: query
+          name: ids
+          description: Deixe o campo vazio para consultar todas as lojas
+          schema:
+            type: string
+            example: '1,2'
+          required: true
+      responses:
+        '200':
+          description: Consulta bem sucedida
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BestSellingProduct'
+        '400':
+          description: Parâmetro inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+components:
+  schemas:
+    SignInUser:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          example: joao.neves@email.com
+        password:
+          type: string
+          example: '123456'
+    RegisteringUser:
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - domain
+      properties:
+        name:
+          type: string
+          example: João Das Neves
+        email:
+          type: string
+          example: joao.neves@email.com
+        password:
+          type: string
+          minLength: 6
+          maxLength: 255
+          example: '123456'
+        domain:
+          type: string
+          example: 'matriz.com'
+    Auth:
+      type: object
+      properties:
+        name:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgxODAyMjgsImV4cCI6MTY3MDc3MjIyOH0.nvZEuj_OTVQc1tfJCGPv0rymfxHD6GPtILoIIdHNj3u
+        expires:
+          type: string
+          example: '2022-12-11T15:23:48.998Z'
+    RequestRecoveryCode:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          example: conta@email.com
+    ResetPassword:
+      type: object
+      required:
+        - email
+        - code
+        - new_password
+        - confirm_password
+      properties:
+        email:
+          type: string
+          example: conta@email.com
+        code:
+          type: integer
+          format: int32
+          minLength: 4
+          maxLength: 4
+          minimum: 1000
+          maximum: 9999
+          example: 1234
+        new_password:
+          type: string
+          minLength: 6
+          maxLength: 255
+          example: '123456'
+        confirm_password:
+          type: string
+          minLength: 6
+          maxLength: 255
+          example: '123456'
+    ChangePassword:
+      type: object
+      required:
+        - email
+        - password
+        - new_password
+        - confirm_password
+      properties:
+        email:
+          type: string
+          example: conta@email.com
+        password:
+          type: string
+          minLength: 6
+          maxLength: 255
+          example: '123456'
+        new_password:
+          type: string
+          minLength: 6
+          maxLength: 255
+          example: '123456'
+        confirm_password:
+          type: string
+          minLength: 6
+          maxLength: 255
+          example: '123456'
+    Store:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        headQuarterId:
+          type: integer
+          format: int32
+          example: 1
+        name:
+          type: string
+          example: Loja 1
+        status:
+          type: string
+          example: ativa
+        country:
+          type: string
+          example: Brasil
+        state:
+          type: string
+          example: SP
+        city:
+          type: string
+          example: São Paulo
+        address:
+          type: string
+          example: Rua Radiantes, 13. Bairro Morumbi - Distrito Morumbi
+    Group:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        name:
+          type: string
+          example: Loja 1
+    RevenuePerHour:
+      type: object
+      properties:
+        storeId:
+          type: integer
+          format: int32
+          example: 1
+        storeName:
+          type: string
+          example: Loja 1
+        quantityOfSales:
+          type: string
+          example: '100'
+        totalRevenue:
+          type: string
+          example: '123.00'
+        quantityOfClients:
+          type: string
+          example: '59'
+    RevenuePerDay:
+      type: object
+      properties:
+        storeId:
+          type: integer
+          format: int32
+          example: 1
+        storeName:
+          type: string
+          example: Loja 1
+        quantityOfSales:
+          type: string
+          example: '211'
+        totalRevenue:
+          type: string
+          example: '2680.00'
+        quantityOfClients:
+          type: string
+          example: '670'
+        averageTicket:
+          type: string
+          example: '4.000000'
+        date:
+          type: string
+          format: date
+          example: "2022-06-30T03:00:00.000Z"
+    RevenuePerMonth:
+      type: object
+      properties:
+        storeId:
+          type: integer
+          format: int32
+          example: 1
+        storeName:
+          type: string
+          example: Loja 1
+        quantityOfSales:
+          type: string
+          example: '5998'
+        totalRevenue:
+          type: string
+          example: '77073.00'
+        quantityOfClients:
+          type: string
+          example: '21828'
+        averageTicket:
+          type: string
+          example: '3.530924'
+        month:
+          type: integer
+          format: int32
+          example: 1
+        year:
+          type: integer
+          format: int32
+          example: 2022
+    RevenuePerGroups:
+      type: object
+      properties:
+        storeId:
+          type: integer
+          format: int32
+          example: 1
+        storeName:
+          type: string
+          example: Loja 1
+        groupId:
+          type: integer
+          format: int32
+          example: 1
+        groupName:
+          type: string
+          example: Sucos
+        quantityOfSales:
+          type: string
+          example: '333'
+        totalRevenue:
+          type: string
+          example: '8515.00'
+        percentagemOfRevenue:
+          type: string
+          example: '0.707255'
+    BestSellingProduct:
+      type: object
+      properties:
+        storeId:
+          type: integer
+          format: int32
+          example: 1
+        storeName:
+          type: string
+          example: Loja 1
+        product:
+          type: string
+          example: Suco de laranja
+        quantity:
+          type: string
+          example: '71'
+        value:
+          type: string
+          example: '2059.00'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Mensagem de erro
+    ValidationError:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            msg:
+              type: string
+              example: Email é obrigtório
+            param:
+              type: string
+              example: email
+            location:
+              type: string
+              example: body
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

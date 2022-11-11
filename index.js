@@ -5,15 +5,15 @@ import express from 'express'
 import fs from 'fs'
 import path from 'path'
 import { listen } from 'soap'
-import FaturamentoDao from './dao/FaturamentoDao'
-import GruposDao from './dao/GruposDao'
-import LojasDao from './dao/LojasDao'
-import ProdutosDao from './dao/ProdutosDao'
+import ReportsDao from './dao/ReportsDao'
+import GroupsDao from './dao/GroupsDao'
+import StoresDao from './dao/StoresDao'
+import ProductsDao from './dao/ProductsDao'
 import DatabaseHelper from './helpers/DatabaseHelper'
-import FaturamentoService from './services/FaturamentoService'
-import GruposService from './services/GruposService'
-import LojasService from './services/LojasService'
-import ProdutosService from './services/ProdutosService'
+import ReportsService from './services/ReportsService'
+import GroupsService from './services/GroupsService'
+import StoresService from './services/StoresService'
+import ProductsService from './services/ProductsService'
 
 const app = express()
 
@@ -35,7 +35,7 @@ let vidadoService = {
         ReportService_0: {
             get_lojas: function (args) {
                 return new Promise((resolve, reject) => {
-                    new LojasService(new LojasDao(databaseHelper))
+                    new StoresService(new StoresDao(databaseHelper))
                         .getLojas(args.ids)
                         .then(result => {
                             resolve({
@@ -57,7 +57,7 @@ let vidadoService = {
             },
             get_grupos: function (args) {
                 return new Promise((resolve, reject) => {
-                    new GruposService(new GruposDao(databaseHelper))
+                    new GroupsService(new GroupsDao(databaseHelper))
                         .getGrupos(args.ids)
                         .then(result => {
                             resolve({
@@ -79,8 +79,8 @@ let vidadoService = {
             },
             get_produtos: function(args) {
                 return new Promise((resolve, reject) => {
-                    new ProdutosService(new ProdutosDao(databaseHelper))
-                        .getProdutos(args.ids)
+                    new ProductsService(new ProductsDao(databaseHelper))
+                        .getAll(args.ids)
                         .then(result => {
                             resolve({
                                 resultado: JSON.stringify(result)
@@ -101,8 +101,8 @@ let vidadoService = {
             },
             get_produtos_por_termo: function(args) {
                 return new Promise((resolve, reject) => {
-                    new ProdutosService(new ProdutosDao(databaseHelper))
-                        .getProdutosPorNome(args.termo)
+                    new ProductsService(new ProductsDao(databaseHelper))
+                        .getByName(args.termo)
                         .then(result => {
                             resolve({
                                 resultado: JSON.stringify(result)
@@ -123,7 +123,7 @@ let vidadoService = {
             },
             get_faturamento_por_dia: function (args) {
                 return new Promise((resolve, reject) => {
-                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                    new ReportsService(new ReportsDao(databaseHelper))
                         .getFaturamentoPorDia(
                             args.data_inicial,
                             args.data_final,
@@ -148,7 +148,7 @@ let vidadoService = {
             },
             get_faturamento_por_mes: function (args) {
                 return new Promise((resolve, reject) => {
-                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                    new ReportsService(new ReportsDao(databaseHelper))
                         .getFaturamentoPorMes(
                             args.data_inicial,
                             args.data_final,
@@ -171,7 +171,7 @@ let vidadoService = {
             },
             get_vendas_por_horario: function (args) {
                 return new Promise((resolve, reject) => {
-                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                    new ReportsService(new ReportsDao(databaseHelper))
                         .getVendasPorHorario(
                             args.data_inicial,
                             args.data_final,
@@ -194,7 +194,7 @@ let vidadoService = {
             },
             get_mais_vendidos_por_grupo: function (args) {
                 return new Promise((resolve, reject) => {
-                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                    new ReportsService(new ReportsDao(databaseHelper))
                         .getMaisVendidosPorGrupo(
                             args.data_inicial,
                             args.data_final,
@@ -217,7 +217,7 @@ let vidadoService = {
             },
             get_produto_mais_vendido: function (args) {
                 return new Promise((resolve, reject) => {
-                    new FaturamentoService(new FaturamentoDao(databaseHelper))
+                    new ReportsService(new ReportsDao(databaseHelper))
                         .getProdutoMaisVendido(
                             args.data_inicial,
                             args.data_final,
