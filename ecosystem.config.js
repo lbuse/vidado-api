@@ -1,7 +1,10 @@
 module.exports = {
   apps : [{
-    name: 'sultao-api',
+    name: 'vidado-api',
     script: './bin/www',
+    env: {
+      "NODE_ENV": "production",
+    },
     node_args: '-r esm -r dotenv/config.js',
     instances: 1,
     autorestart: true,
