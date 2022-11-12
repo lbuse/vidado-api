@@ -1,8 +1,8 @@
 'use strict'
 import compression from 'compression'
-import cors from 'cors'
+// import cors from 'cors'
 import express from 'express'
-import helmet from 'helmet'
+// import helmet from 'helmet'
 import methodOverride from 'method-override'
 import logger from 'morgan'
 import path from 'path'
@@ -25,7 +25,7 @@ app.use(methodOverride('X-HTTP-Method'))
 app.use(methodOverride('X-HTTP-Method-Override'))
 app.use(methodOverride('X-Method-Override'))
 app.use(methodOverride('_method'))
-app.use(cors())
+// app.use(cors())
 
 app.use(logger('dev', {
   skip: function (req, res) { return res.statusCode < 400 }
@@ -34,16 +34,16 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(compression())
 app.use(express.static('public'))
-app.use(helmet())
-app.use(helmet.hidePoweredBy({ setTo: 'PHP 8.1.12' }))
+// app.use(helmet())
+// app.use(helmet.hidePoweredBy({ setTo: 'PHP 8.1.12' }))
 // TODO Descomentar quando swagger corrigir problema de SPC.
 // app.use(helmet.contentSecurityPolicy({
 //   directives: {
 //     defaultSrc: ["'self'"]
 //   }
 // }))
-app.use(helmet.permittedCrossDomainPolicies())
-app.use(helmet.referrerPolicy({ policy: 'same-origin' }))
+// app.use(helmet.permittedCrossDomainPolicies())
+// app.use(helmet.referrerPolicy({ policy: 'same-origin' }))
 
 // router
 app.use('/', routes)
