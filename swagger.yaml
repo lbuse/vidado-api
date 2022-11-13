@@ -242,7 +242,7 @@ paths:
               $ref: '#/components/schemas/ChangePassword'
         required: true
       responses:
-        '204':
+        '202':
           description: Senha foi modificada com o sucesso
         '401':
           description: Senha atual incorreta

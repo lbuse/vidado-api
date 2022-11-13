@@ -193,7 +193,7 @@ class UserService {
               await PasswordHelper.createHash(newPassword)
             ).then(result => {
               if (result > 0) {
-                res.status(204).end()
+                res.status(202).end()
               } else {
                 res.status(500).json({
                   message: 'Não foi possível atualizar a senha devido a um erro no servidor.'
