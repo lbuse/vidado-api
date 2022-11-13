@@ -639,7 +639,7 @@ components:
     Auth:
       type: object
       properties:
-        name:
+        token:
           type: string
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXMiLCJlbWFpbCI6Imx1Y2FzYnVzZWxsYXRvQGdtYWlsLmNvbSIsImRvbWFpbiI6Im1hdHJpei5jb20iLCJpYXQiOjE2NjgxODAyMjgsImV4cCI6MTY3MDc3MjIyOH0.nvZEuj_OTVQc1tfJCGPv0rymfxHD6GPtILoIIdHNj3u
         expires:
