@@ -213,7 +213,7 @@ paths:
               $ref: '#/components/schemas/ResetPassword'
         required: true
       responses:
-        '204':
+        '202':
           description: Código aceito
         '401':
           description: Código inválido ou expirado

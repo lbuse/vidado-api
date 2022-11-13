@@ -299,7 +299,7 @@ class UserService {
             this.dao.updatePassword(email, passwordHashed)
               .then(result => {
                 if (result > 0) {
-                  res.status(204).end()
+                  res.status(202).end()
                 } else {
                   throw new Error('Falha ao atualizar a senha.')
                 }
