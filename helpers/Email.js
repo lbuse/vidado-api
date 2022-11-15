@@ -50,7 +50,7 @@ class Email {
     return await this.transporter.sendMail({
       from: `"Error Report 👻" <${this.user}>`,
       to: this.user,
-      subject: "💥 Falha na API do Sultão 💥",
+      subject: "💥 Falha na Vidado API 💥",
       html: `<h1>${error.message}</h1>
             <h2>${error.status}</h2>
             <pre>${error.stack}</pre>`
