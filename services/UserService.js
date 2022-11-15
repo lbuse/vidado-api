@@ -116,14 +116,17 @@ class UserService {
         }
       } else {
         res.status(409).json({
-          code: 409,
-          message: `Email ${email} já está cadastrado.`
+          errors: {
+            msg: `Email ${email} já está cadastrado.`
+          }
         })
       }
     } catch (err) {
       console.log(err)
       res.status(500).json({
-        message: 'Falha ao cadastrar novo usuário'
+        errors: {
+          msg: 'Falha ao cadastrar novo usuário'
+        }
       })
     }
   }
@@ -157,18 +160,24 @@ class UserService {
             })
           } else {
             res.status(401).json({
-              message: 'Email ou senha inválidos.'
+              errors: {
+                msg: 'Email ou senha inválidos.'
+              }
             })
           }
         } else {
           res.status(401).json({
-            message: 'Email ou senha inválidos.'
+            errors: {
+              msg: 'Email ou senha inválidos.'
+            }
           })
         }
       })
       .catch(err => {
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -196,25 +205,33 @@ class UserService {
                 res.status(202).end()
               } else {
                 res.status(500).json({
-                  message: 'Não foi possível atualizar a senha devido a um erro no servidor.'
+                  errors: {
+                    msg: 'Não foi possível atualizar a senha devido a um erro no servidor.'
+                  }
                 })
               }
             })
           } else {
             res.status(401).json({
-              message: 'Senha atual incorreta'
+              errors: {
+                msg: 'Senha atual incorreta'
+              }
             })
           }
         } else {
           res.status(404).json({
-            message: 'Email não encontrado'
+            errors: {
+              msg: 'Email não encontrado'
+            }
           })
         }
       })
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -250,7 +267,9 @@ class UserService {
                   .catch(err => {
                     console.log(err)
                     res.status(500).json({
-                      message: 'Ocorreu uma falha ao enviar o email com o código de recuperação.'
+                      errors: {
+                        msg: 'Ocorreu uma falha ao enviar o email com o código de recuperação.'
+                      }
                     })
                   })
               } else {
@@ -260,7 +279,9 @@ class UserService {
             .catch(err => {
               console.log(err)
               res.status(500).json({
-                message: 'Ocorreu uma falha durante o processo de recuperação de senha.'
+                errors: {
+                  msg: 'Ocorreu uma falha durante o processo de recuperação de senha.'
+                }
               })
             })
         } else {
@@ -270,7 +291,9 @@ class UserService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: 'Ocorreu uma falha ao iniciar o processo de recuperação de senha'
+          errors: {
+            msg: 'Ocorreu uma falha ao iniciar o processo de recuperação de senha'
+          }
         })
       })
   }
@@ -307,24 +330,32 @@ class UserService {
               .catch(err => {
                 console.log(err)
                 res.status(500).json({
-                  message: 'Ocorreu uma falha ao atualizar a senha.'
+                  errors: {
+                    msg: 'Ocorreu uma falha ao atualizar a senha.'
+                  }
                 })
               })
           } else {
             res.status(401).json({
-              message: 'Código expirou'
+              errors: {
+                msg: 'Código expirou'
+              }
             })
           }
         } else {
           res.status(401).json({
-            message: 'Código inválido.'
+            errors: {
+              msg: 'Código inválido.'
+            }
           })
         }
       })
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: 'Ocorreu uma falha ao tentar verificar o código de recuperação.'
+          errors: {
+            msg: 'Ocorreu uma falha ao tentar verificar o código de recuperação.'
+          }
         })
       })
   }

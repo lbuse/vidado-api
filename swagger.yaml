@@ -870,9 +870,12 @@ components:
     Error:
       type: object
       properties:
-        message:
-          type: string
-          example: Mensagem de erro
+        errors:
+          type: object
+          properties:
+            msg:
+              type: string
+              example: Mensagem de erro
     ValidationError:
       type: object
       properties:

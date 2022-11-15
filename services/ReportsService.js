@@ -26,7 +26,9 @@ class ReportsService {
     )
     if (errorMessage) {
       return res.status(400).json({
-        message: errorMessage
+        errors: {
+          msg: errorMessage
+        }
       })
     }
 
@@ -42,7 +44,9 @@ class ReportsService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -62,7 +66,9 @@ class ReportsService {
     )
     if (errorMessage) {
       return res.status(400).json({
-        message: errorMessage
+        errors: {
+          msg: errorMessage
+        }
       })
     }
 
@@ -78,7 +84,9 @@ class ReportsService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -98,7 +106,9 @@ class ReportsService {
     )
     if (errorMessage) {
       return res.status(400).json({
-        message: errorMessage
+        errors: {
+          msg: errorMessage
+        }
       })
     }
 
@@ -114,7 +124,9 @@ class ReportsService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -133,7 +145,9 @@ class ReportsService {
     )
     if (errorMessage) {
       return res.status(400).json({
-        message: errorMessage
+        errors: {
+          msg: errorMessage
+        }
       })
     }
 
@@ -149,7 +163,9 @@ class ReportsService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -168,7 +184,9 @@ class ReportsService {
     )
     if (errorMessage) {
       return res.status(400).json({
-        message: errorMessage
+        errors: {
+          msg: errorMessage
+        }
       })
     }
 
@@ -184,7 +202,9 @@ class ReportsService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -203,7 +223,9 @@ class ReportsService {
     )
     if (errorMessage) {
       return res.status(400).json({
-        message: errorMessage
+        errors: {
+          msg: errorMessage
+        }
       })
     }
 
@@ -219,7 +241,9 @@ class ReportsService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }

@@ -22,9 +22,12 @@ class ProductsService {
     if (ids != null && ids !== undefined) {
       ids = ids.split(',')
       if (!Validators.isIntegerArray(ids) && !Validators.isInteger(ids)) {
-        return next(new createError.BadRequest(
-          `Lista de códigos de produtos '${ids}' é inválida`
-        ))
+        res.status(400).json({
+          errors: {
+            msg: `Lista de códigos de produtos '${ids}' é inválida`
+          }
+        })
+        return
       }
     }
 
@@ -38,7 +41,9 @@ class ProductsService {
       .catch(err => {
         console.log(err.text)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
@@ -51,7 +56,12 @@ class ProductsService {
   getByName = async (req, res, next) => {
     const termo = req.query['s']
     if (!termo) {
-      return next(new createError.BadRequest(`Termo '${termo}' é inválido`))
+      res.status(400).json({
+        errors: {
+          msg: `Termo '${termo}' é inválido`
+        }
+      })
+      return
     }
 
     const userData = req.decoded
@@ -64,7 +74,9 @@ class ProductsService {
       .catch(err => {
         console.log(err.text)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }

@@ -21,9 +21,12 @@ class StoresService {
     if (ids !== null && ids !== undefined) {
       ids = ids.split(',')
       if (!Validators.isIntegerArray(ids) && !Validators.isInteger(ids)) {
-        return res.status(400).json({
-          message: `Lista de códigos de lojas '${ids}' é inválida`
+        res.status(400).json({
+          errors: {
+            msg: `Lista de códigos de lojas '${ids}' é inválida`
+          }
         })
+        return
       }
     }
 
@@ -37,7 +40,9 @@ class StoresService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }

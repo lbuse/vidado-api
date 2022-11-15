@@ -21,9 +21,12 @@ class GroupsService {
     if (ids != null && ids !== undefined) {
       ids = ids.split(',')
       if (!Validators.isIntegerArray(ids) && !Validators.isInteger(ids)) {
-        return next(new createError.BadRequest(
-          `Lista de códigos de grupos '${ids}' é inválida`
-        ))
+        res.status(400).json({
+          errors: {
+            msg: `Lista de códigos de grupos '${ids}' é inválida`
+          }
+        })
+        return
       }
     }
 
@@ -37,7 +40,9 @@ class GroupsService {
       .catch(err => {
         console.log(err)
         res.status(500).json({
-          message: err.text
+          errors: {
+            msg: err.text
+          }
         })
       })
   }
