@@ -202,11 +202,11 @@ paths:
     patch:
       tags:
         - Usuário
-      summary: Requisita código de recuperação
-      description: Requisita código de recuperação
-      operationId: resetPassword
+      summary: Verifica código de recuperação
+      description: Verifica código de recuperação
+      operationId: checkRecoveryCode
       requestBody:
-        description: Requisita código de recuperação
+        description: Verifica código de recuperação
         content:
           application/x-www-form-urlencoded:
             schema:
