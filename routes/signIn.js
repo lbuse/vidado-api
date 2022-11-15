@@ -21,8 +21,14 @@ router.post(
   userService.createPasswordRecoveryCode.bind(userService)
 )
 
+router.post(
+  '/forgot/check-code',
+  UserService.validate('checkRecoveryCode'),
+  userService.checkRecoveryCode.bind(userService)
+)
+
 router.patch(
-  '/forgot',
+  '/forgot/reset-password',
   UserService.validate('resetPassword'),
   userService.resetPassword.bind(userService)
 )

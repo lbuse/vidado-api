@@ -199,7 +199,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    patch:
+  /signin/forgot/check-code:
+    post:
       tags:
         - Usuário
       summary: Verifica código de recuperação
@@ -210,11 +211,40 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ResetPassword'
+              $ref: '#/components/schemas/CheckRecoveryCode'
         required: true
       responses:
         '202':
           description: Código aceito
+        '401':
+          description: Código inválido ou expirado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /signin/forgot/reset-password:
+    patch:
+      tags:
+        - Usuário
+      summary: Modifica a senha do usuário
+      description: Modifica a senha do usuário
+      operationId: resetPassword
+      requestBody:
+        description: Modifica a senha do usuário
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+        required: true
+      responses:
+        '204':
+          description: Senha modificada com sucesso
         '401':
           description: Código inválido ou expirado
           content:
@@ -653,6 +683,23 @@ components:
         email:
           type: string
           example: conta@email.com
+    CheckRecoveryCode:
+      type: object
+      required:
+        - email
+        - code
+      properties:
+        email:
+          type: string
+          example: conta@email.com
+        code:
+          type: integer
+          format: int32
+          minLength: 4
+          maxLength: 4
+          minimum: 1000
+          maximum: 9999
+          example: 1234
     ResetPassword:
       type: object
       required:

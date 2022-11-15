@@ -90,7 +90,17 @@ class UserDao {
       'UPDATE Usuario SET senha = ? WHERE UPPER(email) = UPPER(?)',
       [newPassword, email]
     )
-      .then(result => result.affectedRows)
+      .then(async result => {
+        try {
+          await conn.query(
+            'DELETE FROM Recuperacao_senha WHERE id_usuario = ?',
+            recoveryCode.userId
+          )
+        } catch (err) {
+          debug(err)
+        }
+        return result.affectedRows
+      })
       .finally(() => {
         if (conn) conn.release()
       })
@@ -150,12 +160,6 @@ class UserDao {
             row.codigo,
             row.expiracao
           )
-        }
-        if (recoveryCode) {
-          conn.query(
-            'DELETE FROM Recuperacao_senha WHERE id_usuario = ?',
-            recoveryCode.userId
-          ).catch(err => debug(err))
         }
         return recoveryCode
       })

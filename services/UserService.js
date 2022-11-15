@@ -18,20 +18,28 @@ class UserService {
 
   static inputCommonValidators = {
     email: {
-      post: body('email')
+      body: body('email')
         .exists().withMessage('Email é obrigatório')
         .trim()
         .isEmail().withMessage('Email inválido')
     },
+    code : {
+     body: body('code')
+            .exists().withMessage('Código de recuperação é obrigatório')
+            .isInt({ min: 1000, max: 9999 }).withMessage(
+              'Código inválido'
+            )
+            .toInt().withMessage('Código inválido'),
+    },
     password: {
-      post: body('password')
+      body: body('password')
         .exists().withMessage('[password] é obrigatório')
         .matches(Validators.passwordPattern).withMessage(
           '[password] deve conter entre 6 e 50 caracteres'
         )
     },
     newPassword: {
-      post: body('new_password')
+      body: body('new_password')
         .exists().withMessage('[new_password] é obrigatório')
         .matches(Validators.passwordPattern).withMessage(
           '[new_password] deve conter entre 6 e 50 caracteres'
@@ -56,34 +64,34 @@ class UserService {
             .matches(Validators.namePattern).withMessage(
               'name deve conter entre 1 e 255 caracteres'
             ),
-          this.inputCommonValidators.email.post,
-          this.inputCommonValidators.password.post
+          this.inputCommonValidators.email.body,
+          this.inputCommonValidators.password.body
         ]
       case 'signIn':
         return [
-          this.inputCommonValidators.email.post,
-          this.inputCommonValidators.password.post
+          this.inputCommonValidators.email.body,
+          this.inputCommonValidators.password.body
         ]
       case 'changePassword':
         return [
-          this.inputCommonValidators.email.post,
-          this.inputCommonValidators.password.post,
-          this.inputCommonValidators.newPassword.post
+          this.inputCommonValidators.email.body,
+          this.inputCommonValidators.password.body,
+          this.inputCommonValidators.newPassword.body
         ]
       case 'createPasswordRecoveryCode':
         return [
-          this.inputCommonValidators.email.post
+          this.inputCommonValidators.email.body
+        ]
+      case 'checkRecoveryCode':
+        return [
+          this.inputCommonValidators.email.body,
+          this.inputCommonValidators.code.body,
         ]
       case 'resetPassword':
         return [
-          this.inputCommonValidators.email.post,
-          body('code')
-            .exists().withMessage('Código de recuperação é obrigatório')
-            .isInt({ min: 1000, max: 9999 }).withMessage(
-              'Código inválido'
-            )
-            .toInt().withMessage('Código inválido'),
-          this.inputCommonValidators.newPassword.post
+          this.inputCommonValidators.email.body,
+          this.inputCommonValidators.code.body,
+          this.inputCommonValidators.newPassword.body
         ]
     }
   }
@@ -298,6 +306,47 @@ class UserService {
       })
   }
 
+  checkRecoveryCode = async (req, res, next) => {
+    if (Validators.haltOnValidationErrors(req, res))
+      return
+
+    const email = req.query['email']
+    const code = req.query['code']
+
+    this.dao.checkRecoveryCode(
+      email,
+      code
+    )
+      .then(async recoveryCode => {
+        if (recoveryCode) {
+          const currentTime = new TimeCapsule().getMoment()
+          if (currentTime.isBefore(recoveryCode.expires)) {
+            res.status(202).end()
+          } else {
+            res.status(401).json({
+              errors: {
+                msg: 'Código expirou'
+              }
+            })
+          }
+        } else {
+          res.status(401).json({
+            errors: {
+              msg: 'Código inválido.'
+            }
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({
+          errors: {
+            msg: 'Ocorreu uma falha ao tentar verificar o código de recuperação.'
+          }
+        })
+      })
+  }
+
   /**
    * Executa a atualização senha no processo de reset da senha.
    */
@@ -322,7 +371,7 @@ class UserService {
             this.dao.updatePassword(email, passwordHashed)
               .then(result => {
                 if (result > 0) {
-                  res.status(202).end()
+                  res.status(204).end()
                 } else {
                   throw new Error('Falha ao atualizar a senha.')
                 }
