@@ -11,6 +11,19 @@ const databaseHelper = new DatabaseHelper()
 const userDao = new UserDao(databaseHelper)
 const userService = new UserService(userDao)
 
+router.get('/',
+  TokenHelper.validate(),
+  TokenHelper.check,
+  userService.getUserData.bind(userService)
+)
+
+router.patch('/',
+  TokenHelper.validate(),
+  TokenHelper.check,
+  UserService.validate('updateUserDate'),
+  userService.updateUserData.bind(userService)
+)
+
 router.patch('/change-password',
   TokenHelper.validate(),
   TokenHelper.check,

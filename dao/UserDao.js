@@ -15,7 +15,7 @@ class UserDao {
 
   /**
    * Retorna informações do usuário especificado
-   * @param {string} username Usuário que deve ser retornado
+   * @param {string} email Email do usuário que deve ser retornado
    * @returns {Promise<UserModel|null>} Retorna um usuário ou nulo
    */
   async findOne(email) {
@@ -32,6 +32,45 @@ class UserDao {
       WHERE UPPER(email) = UPPER(?)
       LIMIT 1 `,
       [email]
+    )
+      .then(rows => {
+        let user = null
+        for (const row of rows) {
+          user = new UserModel(
+            row.id,
+            row.nome,
+            row.email,
+            row.senha,
+            row.dominio,
+            row.ativo === 1
+          )
+        }
+        return user
+      })
+      .finally(() => {
+        if (conn) conn.release()
+      })
+  }
+
+  /**
+   * Retorna informações do usuário especificado
+   * @param {number} id Código do usuário
+   * @returns {Promise<UserModel|null>} Retorna um usuário ou nulo
+   */
+  async findById(id) {
+    let conn = await this.databaseHelper.getConnection()
+    return conn.query(
+      `SELECT
+        id,
+        nome,
+        email,
+        senha,
+        dominio,
+        ativo
+      FROM Usuario
+      WHERE id = ?
+      LIMIT 1 `,
+      id
     )
       .then(rows => {
         let user = null
@@ -79,12 +118,49 @@ class UserDao {
   }
 
   /**
+   * Atualiza dados de um usuário.
+   * @param {number} id Código do usuário
+   * @param {string} name Nome do usuário
+   * @param {string} email Email do usuário
+   * @returns {Promise<number>} Retorna nº de linhas afetadas
+   */
+   async updateOne(id, name, email) {
+    let conn = await this.databaseHelper.getConnection()
+    return conn.query(
+      'UPDATE Usuario SET nome = ?, email = ? WHERE id = ?',
+      [name, email, id]
+    )
+      .then(result => result.affectedRows)
+      .finally(() => {
+        if (conn) conn.release()
+      })
+  }
+
+  /**
+   * Atualiza a senha do usuário
+   * @param {string} id Código do usuário
+   * @param {string} newPassword Nova senha do usuário
+   * @returns {Promise<number>} Retorna o numero de linhas afetadas
+   */
+   async updatePasswordById(id, newPassword) {
+    let conn = await this.databaseHelper.getConnection()
+    return conn.query(
+      'UPDATE Usuario SET senha = ? WHERE id = ?',
+      [newPassword, id]
+    )
+      .then(async result => result.affectedRows)
+      .finally(() => {
+        if (conn) conn.release()
+      })
+  }
+
+  /**
    * Atualiza a senha do usuário
    * @param {string} email Email do usuário
    * @param {string} newPassword Nova senha do usuário
    * @returns {Promise<number>} Retorna o numero de linhas afetadas
    */
-  async updatePassword(email, newPassword) {
+  async updatePasswordByEmail(email, newPassword) {
     let conn = await this.databaseHelper.getConnection()
     return conn.query(
       'UPDATE Usuario SET senha = ? WHERE UPPER(email) = UPPER(?)',
@@ -93,8 +169,11 @@ class UserDao {
       .then(async result => {
         try {
           await conn.query(
-            'DELETE FROM Recuperacao_senha WHERE id_usuario = ?',
-            recoveryCode.userId
+            `DELETE rs.* FROM Recuperacao_senha AS rs
+                INNER JOIN Usuario AS u
+                    ON rs.id_usuario = u.id
+              WHERE UPPER(u.email) = UPPER(?)`,
+            email
           )
         } catch (err) {
           debug(err)

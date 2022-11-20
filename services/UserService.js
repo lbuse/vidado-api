@@ -72,9 +72,18 @@ class UserService {
           this.inputCommonValidators.email.body,
           this.inputCommonValidators.password.body
         ]
+      case 'updateUserDate':
+        return [
+          body('name')
+            .exists().withMessage('[name] é obrigatório')
+            .trim()
+            .matches(Validators.namePattern).withMessage(
+              'name deve conter entre 1 e 255 caracteres'
+            ),
+          this.inputCommonValidators.email.body,
+        ]
       case 'changePassword':
         return [
-          this.inputCommonValidators.email.body,
           this.inputCommonValidators.password.body,
           this.inputCommonValidators.newPassword.body
         ]
@@ -154,9 +163,10 @@ class UserService {
         if (user) {
           if (await PasswordHelper.isPasswordCorrect(password, user.password)) {
             const token = TokenHelper.createJWT({
+              id: user.id,
               name: user.name,
               email: user.email,
-              domain: user.dominio,
+              domain: user.domain,
               tokenPrivateKey: req.app.locals.tokenPrivateKey
             })
             res.status(200).json({
@@ -190,6 +200,67 @@ class UserService {
       })
   }
 
+  getUserData = async (req, res, next) => {
+    const id = req.decoded.id
+
+    this.dao.findById(id)
+      .then(async user => {
+        if (user) {
+          delete user.id
+          delete user.password
+          res.status(200).json(user)
+        } else {
+          res.status(404).json({
+            errors: {
+              msg: 'Usuário não encontrado'
+            }
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({
+          errors: {
+            msg: err.text
+          }
+        })
+      })
+  }
+
+  updateUserData = async (req, res, next) => {
+    if (Validators.haltOnValidationErrors(req, res))
+      return
+
+    const id = req.decoded.id
+    const name = req.body.name
+    const email = req.body.email
+
+    this.dao.updateOne(
+      id,
+      name,
+      email
+    ).then(result => {
+      if (result > 0) {
+        res.status(202).end()
+      } else {
+        res.status(500).json({
+          errors: {
+            msg: 'Não foi possível atualizar o usuário devido a um erro no servidor.'
+          }
+        })
+      }
+    })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({
+          errors: {
+            msg: err.text
+          }
+        })
+      })
+
+  }
+
   /**
    * Atualiza a senha do usuário.
    */
@@ -197,16 +268,16 @@ class UserService {
     if (Validators.haltOnValidationErrors(req, res))
       return
 
-    const email = req.body.email
+    const id = req.decoded.id
     const password = req.body.password
     const newPassword = req.body.new_password
 
-    this.dao.findOne(email)
+    this.dao.findById(id)
       .then(async user => {
         if (user) {
           if (await PasswordHelper.isPasswordCorrect(password, user.password)) {
-            this.dao.updatePassword(
-              email,
+            this.dao.updatePasswordById(
+              id,
               await PasswordHelper.createHash(newPassword)
             ).then(result => {
               if (result > 0) {
@@ -229,7 +300,7 @@ class UserService {
         } else {
           res.status(404).json({
             errors: {
-              msg: 'Email não encontrado'
+              msg: 'Usuário não encontrado'
             }
           })
         }
@@ -310,6 +381,9 @@ class UserService {
       })
   }
 
+  /**
+   * Verifica se código de recuperação está válido.
+   */
   checkRecoveryCode = async (req, res, next) => {
     if (Validators.haltOnValidationErrors(req, res))
       return
@@ -372,7 +446,7 @@ class UserService {
           if (currentTime.isBefore(recoveryCode.expires)) {
             const passwordHashed = await PasswordHelper.createHash(newPassword)
 
-            this.dao.updatePassword(email, passwordHashed)
+            this.dao.updatePasswordByEmail(email, passwordHashed)
               .then(result => {
                 if (result > 0) {
                   res.status(204).end()

@@ -257,6 +257,77 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /user:
+    get:
+      tags:
+        - Usuário
+      summary: Requisita do usuário autenticado
+      description: Requisita do usuário autenticado
+      operationId: getUserData
+      requestBody:
+        description: Requisita do usuário autenticado
+      responses:
+        '200':
+          description: Usuário foi encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Autenticação necessária
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Email não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - Usuário
+      summary: Atualiza dados do usuário
+      description: Atualiza dados do usuário
+      operationId: updateUserData
+      requestBody:
+        description: Atualiza dados do usuário
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateUserData'
+      responses:
+        '202':
+          description: Atualização concluída
+        '401':
+          description: Autenticação necessária
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Email não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Erro de servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - bearerAuth: []
   /user/change-password:
     patch:
       tags:
@@ -275,7 +346,7 @@ paths:
         '202':
           description: Senha foi modificada com o sucesso
         '401':
-          description: Senha atual incorreta
+          description: Autenticação necessária
           content:
             application/json:
               schema:
@@ -675,6 +746,21 @@ components:
         expires:
           type: string
           example: '2022-12-11T15:23:48.998Z'
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: João das Neves
+        email:
+          type: string
+          example: 'joao.neves@email.com'
+        domain:
+          type: string
+          example: dominio.com
+        active:
+          type: boolean
+          example: true
     RequestRecoveryCode:
       type: object
       required:
@@ -729,17 +815,25 @@ components:
           minLength: 6
           maxLength: 255
           example: '123456'
+    UpdateUserData:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+          example: João das Neves
+        email:
+          type: string
+          example: conta@email.com
     ChangePassword:
       type: object
       required:
-        - email
         - password
         - new_password
         - confirm_password
       properties:
-        email:
-          type: string
-          example: conta@email.com
         password:
           type: string
           minLength: 6

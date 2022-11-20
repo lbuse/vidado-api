@@ -1,13 +1,13 @@
 'use strict'
 
 class UserModel {
-  constructor(id, name, email, password, dominio, ativo) {
+  constructor(id, name, email, password, domain, active) {
     this.id = id
     this.name = name
     this.email = email
     this.password = password
-    this.dominio = dominio
-    this.ativo = ativo
+    this.domain = domain
+    this.active = active
   }
 }
 
