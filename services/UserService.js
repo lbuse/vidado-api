@@ -23,13 +23,13 @@ class UserService {
         .trim()
         .isEmail().withMessage('Email inválido')
     },
-    code : {
-     body: body('code')
-            .exists().withMessage('Código de recuperação é obrigatório')
-            .isInt({ min: 1000, max: 9999 }).withMessage(
-              'Código inválido'
-            )
-            .toInt().withMessage('Código inválido'),
+    code: {
+      body: body('code')
+        .exists().withMessage('Código de recuperação é obrigatório')
+        .isInt({ min: 1000, max: 9999 }).withMessage(
+          'Código inválido'
+        )
+        .toInt().withMessage('Código inválido'),
     },
     password: {
       body: body('password')
@@ -293,7 +293,11 @@ class UserService {
               })
             })
         } else {
-          res.status(404).json('Email não foi encontrado')
+          res.status(404).json({
+            errors: {
+              msg: 'Email não encontrado.'
+            }
+          })
         }
       })
       .catch(err => {
