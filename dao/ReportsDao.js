@@ -118,6 +118,7 @@ class ReportsDao {
         SUM(vi.quantidade * vi.preco_unitario) AS preco_total,
         SUM(v.pessoas_atendidas) AS pessoas_atendidas_total,
         SUM(vi.quantidade * vi.preco_unitario) / SUM(v.pessoas_atendidas) AS ticket_medio,
+        MAX(v.data) AS data_ultima_venda_mes,
         MONTH(v.data) AS mes,
         YEAR(v.data) AS ano
       FROM Lojas AS l
@@ -144,6 +145,7 @@ class ReportsDao {
             row.preco_total,
             row.pessoas_atendidas_total,
             row.ticket_medio,
+            row.data_ultima_venda_mes,
             row.mes,
             row.ano
           ))

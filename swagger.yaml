@@ -955,6 +955,10 @@ components:
         averageTicket:
           type: string
           example: '3.530924'
+        dateOfLastSellOfTheMonth:
+          type: integer
+          format: date
+          example: "2022-06-30T03:00:00.000Z"
         month:
           type: integer
           format: int32

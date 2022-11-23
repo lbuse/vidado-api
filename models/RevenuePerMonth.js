@@ -8,6 +8,7 @@ class RevenuePerMonth {
     totalRevenue,
     quantityOfClients,
     averageTicket,
+    dateOfLastSellOfTheMonth,
     month,
     year
   ) {
@@ -17,6 +18,7 @@ class RevenuePerMonth {
     this.totalRevenue = totalRevenue
     this.quantityOfClients = quantityOfClients
     this.averageTicket = averageTicket
+    this.dateOfLastSellOfTheMonth = dateOfLastSellOfTheMonth
     this.month = month
     this.year = year
   }
