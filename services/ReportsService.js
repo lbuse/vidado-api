@@ -34,7 +34,7 @@ class ReportsService {
 
     const userData = req.decoded
 
-    this.dao.getFevenuePerDay(
+    this.dao.getRevenuePerDay(
       new Date(startDate),
       new Date(endDate),
       userData.domain,

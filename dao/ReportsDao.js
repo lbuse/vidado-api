@@ -25,7 +25,7 @@ class ReportsDao {
    * @param {array<number>} storesIds Lista de lojas
    * @returns {Promise<RevenuePerDay>} Lista de faturamentos
    */
-  async getFevenuePerDay(startDate, endDate, domain, storesIds) {
+  async getRevenuePerDay(startDate, endDate, domain, storesIds) {
     let whereLojas = ''
     if (storesIds !== null && storesIds !== undefined && storesIds.length > 0) {
       whereLojas = ' AND v.id_loja IN ('
@@ -59,6 +59,7 @@ class ReportsDao {
         INNER JOIN venda_itens AS vi
           ON vi.id_venda = v.id
       WHERE DATE(v.data) BETWEEN DATE(?) AND DATE(?)
+        AND UPPER(m.dominio) = UPPER(?)
         ${whereLojas}
       GROUP BY v.id_loja, DATE(v.data)
       ORDER BY DATE(v.data), v.id_loja`,
