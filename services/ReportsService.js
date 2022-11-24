@@ -18,7 +18,7 @@ class ReportsService {
   getRevenuePerDay = async (req, res, next) => {
     const startDate = req.query['startDate']
     const endDate = req.query['endDate']
-    const storesIds = req.query['storesIds']
+    const storesIds = req.query['ids']
     const errorMessage = ReportsService._isCommonParamsValid(
       startDate,
       endDate,
@@ -58,7 +58,7 @@ class ReportsService {
   getRevenuePerMonth = async (req, res, next) => {
     const startDate = req.query['startDate']
     const endDate = req.query['endDate']
-    const storesIds = req.query['storesIds']
+    const storesIds = req.query['ids']
     const errorMessage = ReportsService._isCommonParamsValid(
       startDate,
       endDate,
@@ -98,7 +98,7 @@ class ReportsService {
   getRevenuePerHour = async (req, res, next) => {
     const startDate = req.query['startDate']
     const endDate = req.query['endDate']
-    const storesIds = req.query['storesIds']
+    const storesIds = req.query['ids']
     const errorMessage = ReportsService._isCommonParamsValid(
       startDate,
       endDate,
@@ -137,7 +137,7 @@ class ReportsService {
   getRevenueByProductsGroups = async (req, res, next) => {
     const startDate = req.query['startDate']
     const endDate = req.query['endDate']
-    const storesIds = req.query['storesIds']
+    const storesIds = req.query['ids']
     const errorMessage = ReportsService._isCommonParamsValid(
       startDate,
       endDate,
@@ -176,7 +176,7 @@ class ReportsService {
   getBestSellingProducts = async (req, res, next) => {
     const startDate = req.query['startDate']
     const endDate = req.query['endDate']
-    const storesIds = req.query['storesIds']
+    const storesIds = req.query['ids']
     const errorMessage = ReportsService._isCommonParamsValid(
       startDate,
       endDate,
@@ -215,7 +215,7 @@ class ReportsService {
   getStoreScore = async (req, res, next) => {
     const startDate = req.query['startDate']
     const endDate = req.query['endDate']
-    const storesIds = req.query['storesIds']
+    const storesIds = req.query['ids']
     const errorMessage = ReportsService._isCommonParamsValid(
       startDate,
       endDate,
