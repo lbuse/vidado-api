@@ -302,7 +302,7 @@ class ReportsDao {
   }
 
   /**
-   * Consulta os produtos mais vendidos dentro do período informado.
+   * Consulta os dez produtos mais vendidos dentro do período informado.
    * @param {Date} startDate Inicio do período
    * @param {Date} endDate Fim do período
    * @param {string} domain Domínio da Matriz
@@ -353,10 +353,10 @@ class ReportsDao {
             AND UPPER(m.dominio) = UPPER(?)
             ${whereLojas}
           GROUP BY v.id_loja, vi.id_produto
-          ORDER BY quantidade_total DESC
+          LIMIT 10
       ) AS table_aux
-      GROUP BY id_loja
-      ORDER BY id_loja`,
+      GROUP BY id_loja, produto
+      ORDER BY id_loja, quantidade_total DESC`,
       [startDate, endDate, domain, ...storesIds]
     )
       .then(rows => {
